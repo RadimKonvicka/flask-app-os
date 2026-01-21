@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Feedback App</title>
+</head>
+<body>
+    <h1>Feedback Form</h1>
+    <form method="POST">
+        <label for="input">Enter your input:</label>
+        <input type="text" id="input" name="input" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    {% extends "base.html" %}
+{% from "macros.html" import input_field, textarea_field %}
+
+{% block title %}Feedback{% endblock %}
+
+{% block header %}Feedback aplikace{% endblock %}
+
+{% block content %}
+<form method="post">
+    {{ input_field('name', 'Jméno', required=True) }}
+    {{ input_field('email', 'Email', type='email', required=True) }}
+    {{ textarea_field('message', 'Zpráva', required=True) }}
+    <button type="submit">Odeslat</button>
+</form>
+
+<h2>Odeslané zprávy</h2>
+<ul>
+    {% for f in feedbacks %}
+        <li><strong>{{ f.name }}</strong> ({{ f.email }}): {{ f.message }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+</body>
+</html>

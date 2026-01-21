@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% from "macros.html" import input_field %}
+
+{% block title %}Počasí{% endblock %}
+
+{% block header %}Počasí{% endblock %}
+
+{% block content %}
+<form method="post">
+    {{ input_field('city', 'Město', required=True) }}
+    <button type="submit">Získat počasí</button>
+</form>
+
+{% if weather %}
+<h2>Počasí v {{ weather.city }}</h2>
+<p>Teplota: {{ weather.temperature }}</p>
+<p>Popis: {{ weather.description }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from "macros.html" import select_field %}
+
+{% block title %}Výběr{% endblock %}
+
+{% block header %}Výběr{% endblock %}
+
+{% block content %}
+<form method="get">
+    {{ select_field('selected', 'Vyber možnost', options, selected) }}
+    <button type="submit">Vybrat</button>
+</form>
+
+{% if selected %}
+<p>Vybral jsi: {{ selected }}</p>
+{% endif %}
+{% endblock %}
